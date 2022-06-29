@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class cameraFollow : MonoBehaviour
+{
+
+    private Transform player;
+
+    private Vector3 templocation;
+
+    [SerializeField]
+    private float minX, maxX;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player").transform;
+    }
+
+    // Update is called after all calculations in update are finished 
+    void LateUpdate()
+    {
+        templocation = transform.position;
+        templocation.x = player.position.x;
+
+        if(templocation.x < minX)
+        {
+            templocation.x = minX;
+        }
+
+        if(templocation.x > maxX)
+        {
+            templocation.x = maxX;
+        }
+
+        transform.position = templocation;
+    }
+
+} // class
